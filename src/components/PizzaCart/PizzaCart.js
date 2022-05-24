@@ -1,16 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import classNames from "classnames";
 
-const PizzaCart = ({pizza}) => {
-    const {imageUrl, name, types, sizes, price} = pizza;
+// import {trashAction} from "../../redax/slices/trash_slice";
 
-    const pizzaTypes = ['тонкое', 'традиционное'];
-    const pizzaSizes = [26, 30,40];
+const PizzaCart = ({pizza, addPizza}) => {
+    const {id, imageUrl, name, types, sizes, price} = pizza;
+
+    const pizzaTypes = ['thin', 'traditional'];
+    const pizzaSizes = [26, 30, 40];
 
     const [pizzaType, setPizzaType] = useState(types[0]);
     const [pizzaSize, setPizzaSize] = useState(sizes[0]);
 
-    console.log(pizza);
+
+
+
+    const addPizzaToCart =  () => {
+       const newPizza = {
+           id,
+           name,
+           imageUrl,
+           price,
+           type: pizzaTypes[pizzaType],
+           size: pizzaSize
+       }
+        addPizza(newPizza);
+    }
 
     return (
         <div className="pizza-block">
@@ -24,24 +39,24 @@ const PizzaCart = ({pizza}) => {
                 <ul>
                     {pizzaTypes.map((type, index) => <li
                         key={index}
-                        className={classNames(pizzaType===index?'active':'',
-                        !types.includes(index)?'disabled':'')}
-                        onClick={()=>setPizzaType(index)}
+                        className={classNames(pizzaType === index ? 'active' : '',
+                            !types.includes(index) ? 'disabled' : '')}
+                        onClick={() => setPizzaType(index)}
                     >{type}</li>)}
                 </ul>
                 <ul>
                     {pizzaSizes.map((size, index) => <li
                         key={index}
                         className=
-                            {classNames(pizzaSize===size?'active':'',
-                            !sizes.includes(size)?'disabled':'')}
-                        onClick={()=>setPizzaSize(size)}
-                    >{size}</li>)}
+                            {classNames(pizzaSize === size ? 'active' : '',
+                                !sizes.includes(size) ? 'disabled' : '')}
+                        onClick={() => setPizzaSize(size)}
+                    >{size} cm.</li>)}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от {price} ₴</div>
-                <div className="button button--outline button--add">
+                <div className="pizza-block__price">from {price} ₴</div>
+                <button onClick={addPizzaToCart} className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
@@ -54,9 +69,9 @@ const PizzaCart = ({pizza}) => {
                             fill="white"
                         />
                     </svg>
-                    <span>Добавить</span>
-                    <i>2</i>
-                </div>
+                    <span >Add</span>
+
+                </button>
             </div>
         </div>
     );

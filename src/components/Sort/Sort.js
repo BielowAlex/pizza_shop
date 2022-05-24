@@ -4,9 +4,9 @@ const Sort = ({setSort}) => {
     const sortRef = useRef();
 
     const sort = [
-        {id: 0, name: 'популярности'},
-        {id: 1, name: 'цене'},
-        {id: 2, name: 'алфавиту'}
+        {id: 0, name: 'popularity'},
+        {id: 1, name: 'price'},
+        {id: 2, name: 'alphabetically'}
     ];
     const [sortCategory, setSortCategory] = useState(sort[0]);
     const [showHidePopup,setShowHidePopup] = useState(false);
@@ -43,7 +43,7 @@ const Sort = ({setSort}) => {
                         fill="#2C2C2C"
                     />
                 </svg>
-                <b>Сортировка по:</b>
+                <b>Sort by:</b>
                 <span onClick={()=>setShowHidePopup(!showHidePopup)}>{sortCategory && sortCategory.name}</span>
             </div>
             {showHidePopup && <div className='sort__popup'>

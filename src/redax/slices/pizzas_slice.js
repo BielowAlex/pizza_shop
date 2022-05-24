@@ -15,9 +15,10 @@ const filter = createAsyncThunk(
 
         const {data} = await pizzaService.getAll();
 
-        if (category !== null) {
-            return data.pizzas.filter(pizza => pizza.category === category);
-        } else if (category === null) {
+        if (category.id !== null) {
+            return data.pizzas.filter(pizza => pizza.category === category.id);
+        }
+        else if (category.id === null) {
             return data.pizzas;
         }
     }
@@ -49,8 +50,11 @@ const sort = createAsyncThunk(
     }
 );
 
+
+
 const initialState = {
     pizzas: [],
+    trash:[]
 }
 
 const pizzasSlice = createSlice({
@@ -67,6 +71,7 @@ const pizzasSlice = createSlice({
         [sort.fulfilled]: (state, action) => {
             state.pizzas = action.payload
         },
+
     }
 
 });
@@ -76,7 +81,7 @@ const {reducer: pizzasReducer} = pizzasSlice;
 const pizzasAction = {
     getAll,
     filter,
-    sort
+    sort,
 }
 
 export {

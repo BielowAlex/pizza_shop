@@ -6,17 +6,16 @@ const Categories = ({setCategory}) => {
 
     const cat = [
 
-        {id: 1, name: 'Вегетарианская'},
-        {id: 2, name: 'Гриль'},
-        {id: 3, name: 'Острые'},
-        {id: 4, name: 'Закрытые'},
+        {id: 1, name: 'Vegetarian'},
+        {id: 2, name: 'Grill'},
+        {id: 3, name: 'Spicy'},
+        {id: 4, name: 'Mix'},
     ];
 
     const selectCategory = async (cat)=>{
         await setCatActive(cat);
         console.log(catActive);
         setCategory(cat);
-
     }
 
 
@@ -24,11 +23,11 @@ const Categories = ({setCategory}) => {
         <div className="categories">
             <ul>
                 <li onClick={() => selectCategory(null)}
-                    className={catActive === null ? 'active' : ''}>Все
+                    className={catActive === null ? 'active' : ''}>All
                 </li>
-                {cat.map(cat => <li onClick={()=>selectCategory(cat.id)}
-                                    className={catActive === cat.id ? 'active' : ''}
-                                    key={cat.id}>{cat.name}</li>)}
+                {cat.map(category => <li onClick={()=>selectCategory(category)}
+                                         className={catActive === category.id ? 'active' : ''}
+                                         key={category.id}>{category.name}</li>)}
             </ul>
         </div>
     );
