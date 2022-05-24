@@ -13,7 +13,7 @@ const Categories = ({setCategory}) => {
     ];
 
     const selectCategory = async (cat)=>{
-        await setCatActive(cat);
+        await cat===null?setCatActive(null):setCatActive(cat.id);
         console.log(catActive);
         setCategory(cat);
     }

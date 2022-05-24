@@ -12,15 +12,13 @@ const getAll = createAsyncThunk(
 const filter = createAsyncThunk(
     'pizzasSlice/filter',
     async (category) => {
-
+        console.log(category)
         const {data} = await pizzaService.getAll();
 
-        if (category.id !== null) {
+        if (category!==null) {
             return data.pizzas.filter(pizza => pizza.category === category.id);
         }
-        else if (category.id === null) {
             return data.pizzas;
-        }
     }
 );
 const sort = createAsyncThunk(

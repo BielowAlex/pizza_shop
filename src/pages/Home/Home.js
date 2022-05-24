@@ -6,7 +6,7 @@ import {cartAction} from "../../redax/slices/cart_slice";
 
 
 const Home = () => {
-    const [category, setCategory] = useState({});
+    const [category, setCategory] = useState(null);
     const [sort, setSort] = useState(0);
     const {pizzas} = useSelector(state => state.pizzas);
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const Home = () => {
     const addPizzaToTrash = (newPizza) => {
         dispatch(cartAction.addToCart(newPizza))
     }
-    console.log(category);
+
     return (
         <div className="container">
             <div className="content__top">
