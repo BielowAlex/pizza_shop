@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'https://pizza-react-psi.vercel.app/';
+const baseURL = 'https://bielowalex.github.io/portfolio/';
 
 const AxiosService = axios.create({baseURL});
 
